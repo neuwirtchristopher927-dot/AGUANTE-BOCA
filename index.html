@@ -17,39 +17,76 @@
   button{padding:12px 18px;border:1px solid rgba(0,0,0,0.08);background:rgba(255, 255, 255, 0.95);color:#111;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:600}
   button:active{transform:translateY(1px)}
   .output{padding:10px;border-radius:8px;background:#ffffff;border:1px solid #e6e6e6;color:#000000}
+
+
+  .layout{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+  .aside{padding-left:8px}
+
+ 
+  .columns{display:grid;grid-template-columns:1fr;gap:16px;margin-top:0}
+  .col{background:transparent;padding:8px;border-radius:6px}
+  .col p{margin:0;color:#222;transition:transform .14s ease, color .14s ease;transform-origin:center left}
+  .col:hover p{transform:scale(1.04)}
+
+  @media (max-width:920px){
+    .layout{grid-template-columns:1fr}
+    .buttons{flex-wrap:wrap}
+  }
     </style>
   </head>
   <body>
-    <main class="card" role="main">
-      <h1>Argentina</h1>
-      <p>Pulsa un botón.</p>
-      <div class="buttons" role="group" aria-label="Grupo de botones">
-        <button id="btn1" type="button">un bizcocho</button>
-        <button id="btn2" type="button">pedritovm</button>
-        <button id="btn3" type="button">la papa</button>
-        <button id="btn4" type="button">una batidora</button>
-        <button id="btn5" type="button">la pamelardovich</button>
-      </div>
-      <div id="output" class="output" aria-live="polite">Aquí se mostrará la acción.</div>
-    </main>
+    <div class="layout">
+      <main class="card" role="main">
+        <h1>Argentina</h1>
+        <p>Pulsa un botón.</p>
+        <div class="buttons" role="group" aria-label="Grupo de botones">
+          <button id="btn1" type="button">un bizcocho</button>
+          <button id="btn2" type="button">pedritovm</button>
+          <button id="btn3" type="button">la papa</button>
+          <button id="btn4" type="button">una batidora</button>
+          <button id="btn5" type="button">la pamelardovich</button>
+        </div>
+        <div id="output" class="output" aria-live = "polite">Aquí se mostrará la acción.</div>
+      </main>
+
+      <aside class="aside" aria-label="Columna lateral">
+        <section class="columns" aria-label="Tres filas de texto">
+          <div class="col">
+            <p>holaaaaaaa</p>
+          </div>
+          <div class="col">
+            <p>gano boca</p>
+          </div>
+          <div class="col">
+            <p>anashe</p>
+          </div>
+        </section>
+      </aside>
+    </div>
 
     <script>
-  let texto_a_cambiar = document.getElementById("subtitulos");
-  function cambioTexto(){
-    texto_a_cambiar.innerHTML: "USO DE JAVASCRIPT";
-  
-  }
-  function azul (){
-    texto_a_cambiar.style.backrroundcolor = "blue";
+      const output = document.getElementById('output');
+      const body = document.body;
 
-  } 
-   function rojo (){
-    texto_a_cambiar.style.backrroundcolor = "red";
-    texto_a_cambiar.style.display = "none";   }
-     
-    function verde (){
-    texto_a_cambiar.style.backrroundcolor = "green";
-    }
+      const colores = {
+        btn1: '#ff007f', 
+        btn2: '#ff8a00', 
+        btn3: '#00d084', 
+        btn4: '#00bfff', 
+        btn5: '#ffea00'  
+      };
+      
+      
+      body.style.transition = 'background 300ms ease';
+
+      document.querySelectorAll('.buttons button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.id;
+          const color = colores[id] || '#ffffff';
+          body.style.background = color;
+          output.textContent = 'Has pulsado: ' + btn.textContent;
+        });
+      });
     </script>
   </body>
 </html>
