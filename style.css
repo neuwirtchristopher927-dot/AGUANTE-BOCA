@@ -21,7 +21,7 @@
   .col p{margin:0;color:#222;transition:transform .14s ease, color .14s ease;transform-origin:center left}
   .col:hover p{transform:scale(1.04)}
 
-  (max-width:920px){
+  @media screen(max-width:920px){
     .layout{grid-template-columns:1fr}
     .buttons{flex-wrap:wrap}
   }
